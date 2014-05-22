@@ -1,0 +1,51 @@
+{
+  "variables": {
+  },
+  "builders": [{
+    "type": "virtualbox-iso",
+    "name": "trusty64",
+    "guest_os_type": "Ubuntu_64",
+    "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04-server-amd64.iso",
+    "iso_checksum": "01545fa976c8367b4f0d59169ac4866c",
+    "iso_checksum_type": "md5",
+    "guest_os_type": "Ubuntu_64",
+    "http_directory": "http",
+    "disk_size": "20000",
+    "hard_drive_interface": "sata",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "ssh_wait_timeout": "1200s",
+    "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+    "boot_command": [
+        "<esc><esc><enter><wait>",
+        "/install/vmlinuz noapic ",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+        "debian-installer=en_US auto locale=en_US kbd-chooser/method=USA ",
+        "hostname={{ .Name }} ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "netcfg/choose_interface=auto ",
+        "initrd=/install/initrd.gz -- <enter>"
+    ],
+    "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "512"],
+        ["modifyvm", "{{.Name}}", "--cpus", "1"],
+        ["modifyvm", "{{.Name}}", "--natpf1", "ssh,tcp,127.0.0.1,2222,,22"],
+        ["modifyvm", "{{.Name}}", "--macaddress2", "auto"],
+        ["modifyvm", "{{.Name}}", "--nic2", "hostonly"],
+        ["modifyvm", "{{.Name}}", "--hostonlyadapter2", "vboxnet2"]
+
+    ]
+  }],
+    "provisioners": [{
+    "type": "shell",
+    "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+    "script": "./post-install.sh"
+  }],
+  "post-processors": [{
+    "type": "vagrant",
+    "compression_level": "4",
+    "keep_input_artifact": true
+  }]
+}

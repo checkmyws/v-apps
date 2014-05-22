@@ -1,0 +1,8 @@
+*.vbox
+*.vmdk
+*.sublime-project
+*.sublime-workspace.sublime-workspace
+*.iso
+*.ovf
+*.box
+.vagrant
