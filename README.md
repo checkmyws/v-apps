@@ -23,9 +23,15 @@ This server has two networks interfaces attached :
 
 Kibana access at http://192.168.56.20/kibana
 
+	packer build elk.json
+	vagrant up
+
 ### Graphite - Grafana
 
 Grafana access at http://192.168.56.30/grafana
+
+	packer build graphite.json
+	vagrant up
 
 ## Notes
 
