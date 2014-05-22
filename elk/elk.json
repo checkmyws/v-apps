@@ -1,0 +1,34 @@
+{
+  "variables": {
+  },
+  "builders": [{
+    "type": "virtualbox-ovf",
+    "name": "checkmyws-elk",
+    "source_path": "../ubuntu-trusty64/output-trusty64/packer-trusty64.ovf",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "ssh_wait_timeout": "120s",
+    "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+    "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "1024"],
+        ["modifyvm", "{{.Name}}", "--cpus", "2"],
+        ["modifyvm", "{{.Name}}", "--natpf1", "http,tcp,127.0.0.1,8082,,80"],
+        ["modifyvm", "{{.Name}}", "--natpf1", "es,tcp,127.0.0.1,9200,,9200"]
+    ]
+  }],
+  "provisioners": [{
+    "type": "file",
+    "source": "./files",
+    "destination": "/home/vagrant/"      
+    },
+    {
+    "type": "shell",
+    "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+    "script": "./post-install.sh"
+  }],
+  "post-processors": [{
+    "type": "vagrant",
+    "compression_level": "4",
+    "keep_input_artifact": true
+  }]
+}
