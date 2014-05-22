@@ -19,6 +19,8 @@ This server has two networks interfaces attached :
 
 ### ELK
 
+You need to build first a base trusty64 box like the one above
+
 Kibana access at http://192.168.56.20/kibana
 
 ## Notes
