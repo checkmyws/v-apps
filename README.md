@@ -32,6 +32,12 @@ Grafana access at http://192.168.56.30/grafana
 
 	packer build graphite.json
 	vagrant up
+	
+### Wordpress
+
+	vagrant up
+
+Installs Wordpress in its latest french version + MariaDB + Nginx + PHP5-FPM
 
 ## Notes
 
