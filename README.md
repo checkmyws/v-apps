@@ -17,8 +17,6 @@ This server has two networks interfaces attached :
 - eth0 is a NAT only interface.
 - eth1 is a hostonly interface bind on 192.168.56.10 address
 
-**You need to build first a base trusty64 box like the one above to build following boxes**
-
 ### ELK
 
 	vagrant up
