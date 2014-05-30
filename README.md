@@ -21,10 +21,9 @@ This server has two networks interfaces attached :
 
 ### ELK
 
-Kibana access at http://192.168.56.20/kibana
-
-	packer build elk.json
 	vagrant up
+
+Kibana access at http://192.168.56.20/kibana
 
 ### Graphite - Grafana
 
@@ -38,6 +37,8 @@ Grafana access at http://192.168.56.30/grafana
 	vagrant up
 
 Installs Wordpress in its latest french version + MariaDB + Nginx + PHP5-FPM
+
+Wordpress access at http://192.168.56.100
 
 ## Notes
 
