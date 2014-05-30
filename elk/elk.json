@@ -24,7 +24,7 @@
     {
     "type": "shell",
     "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
-    "script": "./post-install.sh"
+    "script": "./install.sh"
   }],
   "post-processors": [{
     "type": "vagrant",

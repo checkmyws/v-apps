@@ -58,10 +58,10 @@ configuration_install () {
 	cp -r collectd/* /opt/collectd/etc/
 	cp logstash/conf.d/* /etc/logstash/conf.d/
 
-	service nginx restart
 	service collectd restart
 	service elasticsearch restart
 	service logstash restart
+	service nginx restart
 
 }
 
