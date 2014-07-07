@@ -6,3 +6,4 @@
 *.ovf
 *.box
 .vagrant
+*.ova
