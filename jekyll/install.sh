@@ -3,7 +3,7 @@
 
 # ------------------- VARS -------------------- #
 
-export NODE_VERS="v0.10.29"
+export NODE_VERS="v0.10.31"
 export NODE_SRC="node-${NODE_VERS}-linux-x64"
 
 # packages list to install
@@ -65,7 +65,7 @@ if [[ ! -d "${VBIN}" || ! -d "${VSHARE}" || ! -d "${VLIB}" ]] ; then
   su -c "mv ${NODE_SRC}/lib/* ${VLIB}/" vagrant
   su -c "mv ${NODE_SRC}/share/* ${VSHARE}/" vagrant
   su -c "rm -R ${NODE_SRC} ${NODE_SRC}.tar.gz" vagrant
-  su -c "echo 'export PATH="\$PATH:${VBIN}" # Add NodeJS to PATH' >> ${VIRT_ENV}/.bashrc" vagrant
+  su -c "echo 'export PATH="\$PATH:${VBIN}" # Add NodeJS to PATH' >> ${VIRT_ENV}/../.bashrc" vagrant
   su -c "PS1='$ '" vagrant  
   su -c "source ${VIRT_ENV}/.bashrc " vagrant
   su -c "${VBIN}/npm install -g yo" vagrant

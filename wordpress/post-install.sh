@@ -20,6 +20,7 @@ wget http://fr.wordpress.org/latest-fr_FR.zip
 unzip latest-fr_FR.zip
 sudo rm /usr/share/nginx/html/index.html
 sudo mv wordpress/* /usr/share/nginx/html/
+sudo chown -R www-data:www-data /usr/share/nginx/html/*
 rmdir wordpress ; rm latest-fr_FR.zip
 
 cd /home/vagrant/files/etc
