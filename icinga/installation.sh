@@ -155,6 +155,7 @@ a2enconf adagios
 
 cd /usr/local/icinga/etc/
 git init
+chown -R nagios:nagios .git
 
 ## Finishing
 
