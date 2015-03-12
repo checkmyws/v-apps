@@ -79,13 +79,17 @@ cd ../
 ## nsca-ng
 
 apt-get install libconfuse-dev -y
-wget https://www.nsca-ng.org/download/nsca-ng-${NSCA}.tar.gz
+wget --no-check-certificate https://www.nsca-ng.org/download/nsca-ng-${NSCA}.tar.gz
 tar xzf nsca-ng-${NSCA}.tar.gz
 cd nsca-ng-${NSCA}
-./configure --enable-server --enable-client --prefix=/usr/local/icinga
+./configure --enable-server --enable-client --prefix=/usr/local/icinga --sbindir=/usr/local/icinga/bin --libexecdir=/usr/local/icinga/libexec --sysconfdir=/usr/local/icinga/etc
 make all
 make install
 cp /home/vagrant/files/etc/nsca-ng/nsca-ng.cfg /usr/local/icinga/etc/
+cp /home/vagrant/files/init/nsca-ng /etc/init.d/
+chmod 755 /etc/init.d/nsca-ng
+update-rc.d nsca-ng defaults
+/etc/init.d/nsca-ng start
 cd ../
 
 ## pnp4nagios
