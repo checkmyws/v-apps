@@ -8,6 +8,7 @@ NRPE=2.15
 NSCA=1.4
 PNP=0.6.24
 LIVE=1.2.6
+THRUK=1.88-2
 
 # ------------------- END VARS ---------------- #
 
@@ -121,6 +122,14 @@ make all
 make install
 
 echo "broker_module=/usr/local/icinga/lib/mk-livestatus/livestatus.o /usr/local/icinga/var/rw/live" >> /usr/local/icinga/etc/icinga.cfg
+cd ../
+
+## Thruk
+
+wget http://download.thruk.org/pkg/v${THRUK}/ubuntu14.04/amd64/thruk_${THRUK}_ubuntu14.04_amd64.deb
+apt-get install libapache2-mod-fcgid xvfb
+dpkg -i thruk_${THRUK}_ubuntu14.04_amd64.deb
+cp /home/vagrant/files/etc/thruk/thruk_local.conf /etc/thruk/thruk_local.conf
 cd ../
 
 ## Adagios
